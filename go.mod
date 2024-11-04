@@ -1,4 +1,4 @@
-module head-first-go
+module github.com/clebersonp/head-first-go
 
 go 1.23.1
 
