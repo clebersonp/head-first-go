@@ -36,6 +36,9 @@ func main() {
 	fmt.Println("A grade of", grade, "is", status)
 
 	fmt.Println()
+	// only one variable in a short variable declaration has to be new
+	// The new variable names are treated as a declaration, and the existing names are treated as an assignment.
+	// Declare "size" and assign "err" because err already exists
 	size, err := fileSize("ch02/grade/pass_fail.go")
 	if err != nil {
 		log.Fatal(err)
