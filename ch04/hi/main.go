@@ -5,6 +5,7 @@ package main
 import (
 	"fmt"
 	"github.com/clebersonp/head-first-go/ch04/greeting"
+	"github.com/clebersonp/head-first-go/ch04/greeting/deutsch" // importing path of nested package "greeting/deutsch"
 )
 
 func main() {
@@ -15,4 +16,11 @@ func main() {
 	fmt.Println()
 
 	greeting.AllGreetings()
+
+	fmt.Println()
+
+	// calling nested package under the greeting directory
+	// we use only the package name that is usually the same name of the directory
+	deutsch.Hallo()
+	deutsch.GutenTag()
 }
