@@ -12,3 +12,10 @@ func Hello() {
 func Hi() {
 	fmt.Println("Hi!")
 }
+
+func AllGreetings() {
+	// we would just type the name functions (without the package name qualifier) because we'd be calling the
+	// functions from the same package where they're defined.
+	Hello()
+	Hi()
+}
