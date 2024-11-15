@@ -1,6 +1,7 @@
 package main
 
 // We need to import the package before we can use its functions.
+// module name (github.com/clebersonp/head-first-go) followed by the path package (/ch04/greeting)
 import "github.com/clebersonp/head-first-go/ch04/greeting"
 
 func main() {
