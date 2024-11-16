@@ -24,3 +24,9 @@ func main() {
 	dansk.Hej()
 	dansk.GodMorgen()
 }
+
+// To see the package documentation from terminal:
+// go doc import-path
+// go doc github.com/headfirstgo/greeting
+// To see the specific function documentation from terminal:
+// go doc github.com/headfirstgo/greeting Hello
