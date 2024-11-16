@@ -1,2 +1,4 @@
+github.com/headfirstgo/greeting v0.0.0-20190504033635-66e7507184ee h1:Hb9bIxuBldEBCjyExf8LAWdR3V7ikknAHVGfAsP7pA0=
+github.com/headfirstgo/greeting v0.0.0-20190504033635-66e7507184ee/go.mod h1:VREJ5Jpvj59lYxvs0Uzt8BtzUg05tqSxp+H67JHSBn8=
 golang.org/x/text v0.20.0 h1:gK/Kv2otX8gz+wn7Rmb3vT96ZwuoxnQlY+HlJVj7Qug=
 golang.org/x/text v0.20.0/go.mod h1:D4IsuqiFMhST5bX19pQ9ikHC2GsaKyk/oF+pn3ducp4=
