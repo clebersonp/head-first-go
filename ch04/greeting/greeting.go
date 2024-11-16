@@ -1,6 +1,11 @@
 // Package greeting isn't "main", it's "greeting"!
 //
 // It has some greetings functions on it.
+//
+// Package comments should begin with "Package" word followed by the package name.
+//
+// Function comments should begin with the same name of the function they describe.
+// We can include code examples in our comments by indenting them.
 package greeting
 
 import "fmt"
