@@ -34,3 +34,8 @@ func AllGreetings() {
 // go doc ./ch04/greeting
 // To see the specific function documentation from terminal:
 // go doc ./ch04/greeting Hello
+
+// To run on terminal a web server to see the documentation:
+// godoc -http=:6060
+// Then open a web browser on http://localhost:6060
+// To stop the web server press ctrl+c on terminal to stop the godoc server.
