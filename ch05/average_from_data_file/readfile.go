@@ -1,37 +1,25 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
+	"github.com/clebersonp/head-first-go/ch05/datafile"
 	"log"
-	"os"
 )
 
-// Run the program at terminal:
+// Run the program at terminal inside the ch05/average_from_data_file directory:
 // go run readfile.go
+// If we 'go install' the program, the binary file will be moved to the go workspace's /bin directory in the
+// same directory as the binary file.
 
 func main() {
-	// open the data file for reading
-	file, err := os.Open("data.txt")
+	numbers, err := datafile.GetFloats("data.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
-	// close the file to free resources as soon as possible when the main functions return.
-	defer func(file *os.File) {
-		err = file.Close()
-		if err != nil {
-			log.Fatal(err)
-		}
-	}(file)
-	// create a new scanner for the file
-	scanner := bufio.NewScanner(file)
-	// loops until the end of the file
-	for scanner.Scan() {
-		fmt.Println(scanner.Text())
+	var sum float64
+	for _, number := range numbers {
+		sum += number
 	}
-
-	// It's possible that the bufio.Scanner encountered an error while scanning through the file.
-	if scanner.Err() != nil {
-		log.Fatal(scanner.Err())
-	}
+	sampleCount := float64(len(numbers))
+	fmt.Printf("Length: %d. Numbers: %v. Total: %0.2f. Average: %0.2f\n", len(numbers), numbers, sum, sum/sampleCount)
 }
