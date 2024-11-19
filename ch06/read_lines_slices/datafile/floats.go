@@ -13,7 +13,7 @@ func GetFloats(fileName string) ([]float64, error) {
 	// open the data file for reading
 	file, err := os.Open(fileName)
 	if err != nil {
-		return numbers, err
+		return nil, err
 	}
 	// close the file to free resources as soon as possible when the main functions return.
 	defer func(file *os.File) {
@@ -26,15 +26,16 @@ func GetFloats(fileName string) ([]float64, error) {
 	scanner := bufio.NewScanner(file)
 	// loops until the end of the file
 	for scanner.Scan() {
-		number, erro := strconv.ParseFloat(scanner.Text(), 64)
-		if erro != nil {
-			return nil, erro
+		var number float64
+		number, err = strconv.ParseFloat(scanner.Text(), 64)
+		if err != nil {
+			return nil, err
 		}
 		numbers = append(numbers, number)
 	}
 	// It's possible that the bufio.Scanner encountered an error while scanning through the file.
 	if scanner.Err() != nil {
-		return numbers, scanner.Err()
+		return nil, scanner.Err()
 	}
 	return numbers, nil
 }
