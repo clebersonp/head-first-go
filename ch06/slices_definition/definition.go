@@ -92,6 +92,10 @@ func main() {
 	// Functions in Go are intentionally flexible and written to treat a 'nil' slice as an empty slice.
 	// In other languages we need to check if a 'slice' is 'null' before we can use it. Not in Go.
 	fmt.Printf("Capacity: %d, Length: %d, Data: %#v, Nil: %t\n", cap(intSlice), len(intSlice), intSlice, intSlice == nil)
+	// Treating a nil slice as an empty slice
+	if len(intSlice) == 0 {
+		intSlice = append(intSlice, 0)
+	}
 	intSlice = append(intSlice, 1, 2, 3)
 	fmt.Printf("Capacity: %d, Length: %d, Data: %#v, Nil: %t\n", cap(intSlice), len(intSlice), intSlice, intSlice == nil)
 
