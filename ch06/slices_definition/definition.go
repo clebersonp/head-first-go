@@ -79,4 +79,9 @@ func main() {
 	slice = append(slice, slice4...)
 	fmt.Println(slice)
 
+	// As with arrays, slice that no value has been assigned to, will get the 'zero value' for that type back:
+	floatSlice := make([]float64, 10)
+	boolSlice := make([]bool, 10)
+	fmt.Println(floatSlice, boolSlice)
+
 }
