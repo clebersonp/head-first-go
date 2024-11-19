@@ -84,4 +84,15 @@ func main() {
 	boolSlice := make([]bool, 10)
 	fmt.Println(floatSlice, boolSlice)
 
+	// Unlike arrays, the slice variable itself also has a zero value: it's 'nil'.
+	var intSlice []int
+	var stringSlices []string
+	fmt.Printf("intSlice: %#v, stringSlices: %#v\n", intSlice, stringSlices)
+
+	// Functions in Go are intentionally flexible and written to treat a 'nil' slice as an empty slice.
+	// In other languages we need to check if a 'slice' is 'null' before we can use it. Not in Go.
+	fmt.Printf("Capacity: %d, Length: %d, Data: %#v, Nil: %t\n", cap(intSlice), len(intSlice), intSlice, intSlice == nil)
+	intSlice = append(intSlice, 1, 2, 3)
+	fmt.Printf("Capacity: %d, Length: %d, Data: %#v, Nil: %t\n", cap(intSlice), len(intSlice), intSlice, intSlice == nil)
+
 }
