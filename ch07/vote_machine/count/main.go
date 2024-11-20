@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/clebersonp/head-first-go/ch07/vote_machine_v1/datafile"
+	"github.com/clebersonp/head-first-go/ch07/vote_machine/datafile"
 	"log"
 )
 
@@ -10,7 +10,7 @@ import (
 // go run ./ch07/vote_machine_v1/count/main.go
 
 func main() {
-	lines, err := datafile.GetStrings("ch07/vote_machine_v1/count/votes.txt")
+	lines, err := datafile.GetStrings("ch07/vote_machine/count/votes.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -53,9 +53,14 @@ func countVotesWithMaps(lines []string) {
 	for _, line := range lines {
 		// Arrays and slices only let you use integer indexes.
 		// But you can choose almost any type to use for a map's keys.
+		// If the key we're accessing doesn't already exist, we'll get the zero value back (0), then increment it
+		// giving us 1. When we access the same key again, we'll get 1 and increment normal.
 		votes[line]++
 	}
 	fmt.Println("Count votes with maps:")
+	// syntax: for key, value := range map
+	// or: for key := range map
+	// or: for _, value := range map
 	for candidate, count := range votes {
 		fmt.Printf("%s: %d\n", candidate, count)
 	}
