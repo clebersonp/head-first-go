@@ -47,6 +47,18 @@ func minimumOrder(description string) part {
 	return p
 }
 
+// double is a function that takes a pointer to a part and multiplies its count by 2
+// As Go is a 'pass-by-value' language, the value of the variable is copied to the function parameter.
+// For that reason, we can change the value of the variable through the function parameter by passing the pointer.
+// Otherwise, we can't change the value of the variable through the function parameter because it's a value copy.
+// the pointer can be any type, even a struct.
+func double(p *part) {
+	// the dot notation to access fields works on struct pointers as well as the structs themselves.
+	// we don't need to use '* operator' to access fields on struct pointers, Go knows to do that automatically.
+	// But we can to that using the following notation: (*p).count *= 2
+	p.count *= 2
+}
+
 func main() {
 	// declare a struct called myStruct
 	var myStruct struct {
@@ -90,5 +102,10 @@ func main() {
 
 	fmt.Println()
 	p := minimumOrder("Another Hex bolts")
+	showInfo(p)
+	fmt.Println()
+
+	// changing the value of a struct variable in function parameter by passing the pointer
+	double(&p)
 	showInfo(p)
 }
