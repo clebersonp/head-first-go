@@ -10,9 +10,20 @@ type Subscriber struct {
 	Name   string  // name is Capitalized and exported
 	Rate   float64 // Rate is exported
 	Active bool    // Active is exported
+	// Adding a struct as a field on another type
+	HomeAddress Address
 }
 
 type Employee struct {
 	Name   string
 	Salary float64
+	// Adding a struct as a field on another type
+	HomeAddress Address
+}
+
+type Address struct {
+	Street     string
+	City       string
+	State      string
+	PostalCode string
 }

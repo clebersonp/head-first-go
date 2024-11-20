@@ -35,4 +35,13 @@ func main() {
 		Salary: 60000,
 	}
 	fmt.Printf("Employee: %#v\n", joy)
+
+	var otherSubscriber magazine.Subscriber
+	// all field will be set to their zero value, even the fields of type struct
+	fmt.Printf("Subscriber: %#v\n", otherSubscriber)
+	// As 'Go' initialize all fields with zero value, we can access to the inner structs' fields without problem.
+	fmt.Printf("otherSubscriber.HomeAddress.City: %#v\n", otherSubscriber.HomeAddress.City)
+	// we call this 'otherSubscriber.HomeAddress.PostalCode' of 'dot operator chaining'
+	otherSubscriber.HomeAddress.PostalCode = "67200"
+	fmt.Printf("otherSubscriber.HomeAddress.PostalCode: %#v\n", otherSubscriber.HomeAddress.PostalCode)
 }
