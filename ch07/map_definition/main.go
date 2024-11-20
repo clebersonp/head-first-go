@@ -10,6 +10,7 @@ import "fmt"
 // But a key don't have to be the same type as the value
 // map literals: myMap := map[string]float64{"a": 1.2, "b": 3.4}
 // myMap := map[string]float64{} creates an empty map
+// maps is unordered collection of keys and values
 
 func main() {
 	var isPrime map[int]bool
