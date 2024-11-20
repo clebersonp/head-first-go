@@ -12,6 +12,13 @@ import "fmt"
 // such as array, slice, map, or struct): type myStructure struct { field1 string, field2 bool, ... }
 // Just like variables, type definitions can be written within a function (narrow scope) or at the package level (wide scope).
 
+// Don't use an existing type name as a variable name.
+// If you've defined a type named car in the current package, and you declare a variable that's also named car,
+// the variable name will 'shadow' the type name, making it inaccessible.
+// i.e.:
+// var car car // shadowing the type car and refers to the type
+// var car2 car // refers to the variable, resulting in an error!
+
 // part is the underlying type of struct with these fields
 // part is a type definition
 type part struct {
@@ -24,6 +31,20 @@ type part struct {
 type car struct {
 	name     string
 	topSpeed float64
+}
+
+// showInfo is a function that takes a part as a parameter and prints its description and count
+func showInfo(p part) {
+	fmt.Println("Description:", p.description)
+	fmt.Println("Count:", p.count)
+}
+
+// minimumOrder is a function that returns a part with a description and count of 100
+func minimumOrder(description string) part {
+	var p part
+	p.description = description
+	p.count = 100
+	return p
 }
 
 func main() {
@@ -61,4 +82,13 @@ func main() {
 	fmt.Printf("%#v\n", bolts)
 	fmt.Println("Description:", bolts.description)
 	fmt.Println("Count:", bolts.count)
+
+	fmt.Println()
+
+	// accessing function and passing defined type as a parameter
+	showInfo(bolts)
+
+	fmt.Println()
+	p := minimumOrder("Another Hex bolts")
+	showInfo(p)
 }
