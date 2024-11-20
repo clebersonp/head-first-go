@@ -44,4 +44,31 @@ func main() {
 	// we call this 'otherSubscriber.HomeAddress.PostalCode' of 'dot operator chaining'
 	otherSubscriber.HomeAddress.PostalCode = "67200"
 	fmt.Printf("otherSubscriber.HomeAddress.PostalCode: %#v\n", otherSubscriber.HomeAddress.PostalCode)
+
+	fmt.Println()
+
+	// create and initialize a struct with 'struct literal'
+	anna := magazine.Employee{
+		Name:   "Anna Smith",
+		Salary: 80_000,
+		HomeAddress: magazine.Address{
+			Street:     "123 Main St",
+			City:       "New York",
+			State:      "NY",
+			PostalCode: "12345",
+		},
+		// Permission is an anonymous struct or embedded struct, we can access its fields directly or via Permission
+		Permission: magazine.Permission{
+			CanRead:  true,
+			CanWrite: true,
+		},
+	}
+	fmt.Printf("Employee: %#v\n", anna)
+	// accessing the inner struct Permission fields
+	fmt.Printf("anna.Permission.CanRead: %#v\n", anna.Permission.CanRead)
+	fmt.Printf("anna.Permission.CanWrite: %#v\n", anna.Permission.CanWrite)
+	// accessing the inner struct Address fields directly because it's an embedded struct
+	// This is similar to 'java inheritance', but Go has no inheritance
+	fmt.Printf("anna.CanRead: %#v\n", anna.CanRead)
+	fmt.Printf("anna.CanWrite: %#v\n", anna.CanWrite)
 }

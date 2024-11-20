@@ -12,6 +12,7 @@ type Subscriber struct {
 	Active bool    // Active is exported
 	// Adding a struct as a field on another type
 	HomeAddress Address
+	Permission
 }
 
 type Employee struct {
@@ -19,6 +20,14 @@ type Employee struct {
 	Salary float64
 	// Adding a struct as a field on another type
 	HomeAddress Address
+	// Adding anonymous fields of struct type.
+	// We put the type but not the field name.
+	// We call anonymous fields 'embedded fields'
+	// That's like java inheritance
+	// We can access the Permission struct fields directly or through the Permission type before.
+	// All Permission fields will be promoted to the top (outer level) of the struct.
+	// Caution to use indiscriminately embedded fields. Sometimes they can be confusing to read and maintain.
+	Permission
 }
 
 type Address struct {
@@ -26,4 +35,9 @@ type Address struct {
 	City       string
 	State      string
 	PostalCode string
+}
+
+type Permission struct {
+	CanRead  bool
+	CanWrite bool
 }
