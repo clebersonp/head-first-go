@@ -59,4 +59,17 @@ func main() {
 		fmt.Println("key 'c' Not found")
 	}
 
+	fmt.Printf("\nBuilt-in 'delete' function\n")
+	// Remove a key-pair with built-in 'delete' function
+	ranks := make(map[string]int)
+	ranks["bronze"] = 3
+	rank, ok := ranks["bronze"]
+	fmt.Printf("rank: %d, ok: %t\n", rank, ok)
+	delete(ranks, "bronze")
+	rank, ok = ranks["bronze"]
+	fmt.Printf("rank: %d, ok: %t\n", rank, ok)
+	delete(ranks, "bronze") // no-op because the key doesn't exist
+	rank, ok = ranks["bronze"]
+	fmt.Printf("rank: %d, ok: %t\n", rank, ok)
+
 }
