@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/clebersonp/head-first-go/ch07/vote_machine/datafile"
 	"log"
+	"sort"
 )
 
 // To run on terminal:
@@ -57,11 +58,24 @@ func countVotesWithMaps(lines []string) {
 		// giving us 1. When we access the same key again, we'll get 1 and increment normal.
 		votes[line]++
 	}
+
+	var candidates []string
+	for name := range votes {
+		candidates = append(candidates, name)
+	}
+	// sorting by the candidates' names
+	sort.Strings(candidates)
+
 	fmt.Println("Count votes with maps:")
 	// syntax: for key, value := range map
 	// or: for key := range map
 	// or: for _, value := range map
-	for candidate, count := range votes {
-		fmt.Printf("%s: %d\n", candidate, count)
+	//for candidate, count := range votes {
+	//	fmt.Printf("%s: %d\n", candidate, count)
+	//}
+
+	// iterate over slice of candidates' names
+	for _, name := range candidates {
+		fmt.Printf("Votes for %s: %d\n", name, votes[name])
 	}
 }
