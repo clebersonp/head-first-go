@@ -108,4 +108,38 @@ func main() {
 	// changing the value of a struct variable in function parameter by passing the pointer
 	double(&p)
 	showInfo(p)
+
+	fmt.Println()
+
+	// Accessing struct fields through a pointer
+	value := 2
+	pointer := &value
+	// use the '*' operator to access the value at the memory address it points to (value-at-operator)
+	fmt.Println("Memory address it points to:", pointer, ",value:", *pointer)
+
+	fmt.Println()
+	var myNewStruct part
+	myNewStruct.description = "My new struct"
+	myNewStruct.count = 10
+	myStructPointer := &myNewStruct
+	fmt.Println(myStructPointer)
+	// Go will automatically dereference the pointer to access the value at the memory address it points to
+	// This works for assigning to struct fields through a pointer as well.
+	myStructPointer.description = "Changing the description in struct pointer and accessing it without the * operator"
+	fmt.Println(myStructPointer.description, myStructPointer.count)
+	// If we want to access the value at the memory address it points to, we need to use the '*' operator
+	fmt.Println(*myStructPointer)
+	// Get the struct value at the pointer, then access the struct field.
+	fmt.Println((*myStructPointer).description, (*myStructPointer).count)
+	// this way will cause compiler error. Go thinks that description and count must contain a pointer
+	// fmt.Println(*myStructPointer.description, *myStructPointer.count)
+
+	// When we have to change the value of a struct field from a function parameter, we need to use a pointer.
+	// Or when we pass large structs to a function, we can use a pointer to save memory space. Otherwise, Go
+	// will copy the entire struct to the function parameter and increase the memory usage.
+	// Functions receive a copy of the arguments they're called with, even if they're a big value like a struct.
+	// For that reason, it's often a good idea to pass functions a pointer to a struct, rather than the struct itself.
+	// When you pass a struct pointer, only one copy of the original struct exists in memory, and the funtions just
+	// receives the memory address of the original struct.
+
 }
