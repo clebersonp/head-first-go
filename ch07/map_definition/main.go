@@ -44,4 +44,19 @@ func main() {
 	fmt.Printf("%#v\n", numbers["one"])
 	fmt.Printf("%#v\n", numbers["two"])
 
+	// Check if a key exists in a map. It can return two values: the value and a boolean that indicates whether the key was found.
+	// "comma ok idiom" is the term for using (value, ok := maps[key]) to check if a key exists
+	counters := map[string]int{"a": 3, "b": 0}
+	if value, ok := counters["a"]; ok {
+		fmt.Println("Found 'a':", value)
+	}
+	if value, ok := counters["b"]; ok {
+		fmt.Println("Found 'b':", value)
+	}
+	if value, ok := counters["c"]; ok {
+		fmt.Println("Found 'c':", value)
+	} else {
+		fmt.Println("key 'c' Not found")
+	}
+
 }
