@@ -11,3 +11,8 @@ type Subscriber struct {
 	Rate   float64 // Rate is exported
 	Active bool    // Active is exported
 }
+
+type Employee struct {
+	Name   string
+	Salary float64
+}

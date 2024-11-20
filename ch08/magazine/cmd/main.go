@@ -28,4 +28,11 @@ func main() {
 		Rate: 7.90,
 	}
 	fmt.Printf("%#v\n", newSubscriber)
+
+	// Creating an employee
+	joy := magazine.Employee{
+		Name:   "Joy Carr",
+		Salary: 60000,
+	}
+	fmt.Printf("Employee: %#v\n", joy)
 }
