@@ -45,4 +45,17 @@ func main() {
 	busFuel = Liters(Gallons(63.0) * 3.785) // Gallons to Liters
 	fmt.Printf("Gallons: %0.1f Liters: %0.1f\n", carFuel, busFuel)
 
+	// Defined type supports all the same operations as the underlying type.
+	fmt.Println(Liters(1.2) + Liters(3.4))
+	fmt.Println(Gallons(4.5) == 4.5)
+	type Title string
+	fmt.Println(Title("Hello") + " world!")
+
+	// Defined types cannot be used in operations together with values of a different type, even if the other type
+	// has the same underlying type.
+	//fmt.Println(Liters(1.2) + Gallons(4.5)) // compile error
+	//fmt.Println(Title("Hi") == 2.0) // compile error
+	// If I want to make operations with a defined type and a value of a different type, I need to convert the value.
+	fmt.Println(Liters(3.4) + Liters(Gallons(4.5)))
+
 }
