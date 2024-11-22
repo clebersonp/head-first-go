@@ -14,6 +14,9 @@ type Liters float64
 // Gallons is a defined type that's based on a float64 (underlying float type)
 type Gallons float64
 
+// Milliliters is a defined type that's based on a float64 (underlying float type)
+type Milliliters float64
+
 func main() {
 	var carFuel Gallons
 	var busFuel Liters
@@ -58,4 +61,24 @@ func main() {
 	// If I want to make operations with a defined type and a value of a different type, I need to convert the value.
 	fmt.Println(Liters(3.4) + Liters(Gallons(4.5)))
 
+	// Using functions to convert between defined types, Gallons to Liters and vice versa.
+	fmt.Printf("Car fuel: %0.1f gallons\n", LitersToGallons(Liters(40.0)))
+	fmt.Printf("Bus fuel: %0.1f liters\n", GallonsToLiters(Gallons(30.0)))
+
+}
+
+func LitersToGallons(l Liters) Gallons {
+	return Gallons(l * 0.264)
+}
+
+func MillilitersToGallons(m Milliliters) Gallons {
+	return Gallons(m * 0.000264)
+}
+
+func GallonsToLiters(g Gallons) Liters {
+	return Liters(g * 3.785)
+}
+
+func GallonsToMilliliters(g Gallons) Milliliters {
+	return Milliliters(g * 3785.41)
 }
