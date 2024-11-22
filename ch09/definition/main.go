@@ -67,6 +67,10 @@ func main() {
 
 }
 
+// The Go language is simplified by 'not' supporting overloading of functions.
+// So, in Go we cannot have functions with the same name, even the number and types of arguments are different.
+// To avoid creating many different functions we can use methods instead.
+
 func LitersToGallons(l Liters) Gallons {
 	return Gallons(l * 0.264)
 }
