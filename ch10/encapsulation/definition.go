@@ -37,4 +37,19 @@ func main() {
 	fmt.Println(date.Year())
 	fmt.Println(date.Month())
 	fmt.Println(date.Day())
+
+	// Create a calendar event with embedded Date type
+	event := calendar.Event{}
+	// We can call setter methods on the embedded Date type with 'dot notation' in Date type value
+	if err := event.Date.SetYear(2024); err != nil {
+		log.Fatal(err)
+	}
+	// We can call setter methods on the embedded Date type with 'dot notation' directly on the event type value
+	if err := event.SetMonth(8); err != nil {
+		log.Fatal(err)
+	}
+	if err := event.SetDay(10); err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("%d-%.2d-%d\n", event.Date.Year(), event.Month(), event.Day())
 }
