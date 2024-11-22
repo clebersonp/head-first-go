@@ -7,6 +7,8 @@ import (
 )
 
 // Encapsulation: a way to protect your struct type's fields from that invalid data.
+// Go developers generally only rely on encapsulation when it's necessary, such as when field data needs to be
+// validated by setter methods.
 
 // We need encapsulate validation data to setter methods that will be used to validate data.
 // Setter methods are methods used to set fields or other values within a defined type's underlying value.
