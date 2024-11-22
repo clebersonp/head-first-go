@@ -62,5 +62,4 @@ func main() {
 	// This not compile:
 	// MyType("a value").pointerMethod()
 
-	)
 }
