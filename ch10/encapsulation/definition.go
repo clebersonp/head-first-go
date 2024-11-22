@@ -11,6 +11,8 @@ import (
 // We need encapsulate validation data to setter methods that will be used to validate data.
 // Setter methods are methods used to set fields or other values within a defined type's underlying value.
 // By convention, Go setter methods are usually named in the form SetX, where X is the name of the field.
+// Unexported variables, struct fields, functions, and methods can still be accessed by exported functions and methods
+// in the same package.
 
 func main() {
 	// don't compile because the fields are unexported and the struct is another package
@@ -30,4 +32,7 @@ func main() {
 		log.Fatal(err)
 	}
 	fmt.Printf("%#v\n", date)
+	fmt.Println(date.Year())
+	fmt.Println(date.Month())
+	fmt.Println(date.Day())
 }
