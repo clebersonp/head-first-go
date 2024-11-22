@@ -40,7 +40,12 @@ func main() {
 
 	// Create a calendar event with embedded Date type
 	event := calendar.Event{}
+	if err := event.SetTitle("Birthday"); err != nil {
+		log.Fatal(err)
+	}
 	// We can call setter methods on the embedded Date type with 'dot notation' in Date type value
+	// Method promotion allows you to easily use one type's methods as if they belonged to another.
+	// We can use this to compose types that combine the methods of several other types.
 	if err := event.Date.SetYear(2024); err != nil {
 		log.Fatal(err)
 	}
@@ -51,5 +56,5 @@ func main() {
 	if err := event.SetDay(10); err != nil {
 		log.Fatal(err)
 	}
-	fmt.Printf("%d-%.2d-%d\n", event.Date.Year(), event.Month(), event.Day())
+	fmt.Printf("%s: %d-%.2d-%d\n", event.Title(), event.Date.Year(), event.Month(), event.Day())
 }
