@@ -28,6 +28,7 @@ func GetFloats(fileName string) ([]float64, error) {
 	// defer execute even any error occurs.
 	// The 'defer' keyword ensures a function call takes place, even if the calling function exits early.
 	// Important: We need to put the call function with defer immediately after the call to 'OpenFile'.
+	// 'defer' can only be used with a function or method call.
 	defer CloseFile(fl)
 	var numbers []float64
 	scanner := bufio.NewScanner(fl)
