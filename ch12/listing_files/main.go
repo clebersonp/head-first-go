@@ -2,17 +2,22 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"os"
 	"path/filepath"
 )
 
 // list files in a directory
-func listFiles(path string) error {
+func listFiles(path string) {
 	fmt.Println(path)
 	files, err := os.ReadDir(path)
 	if err != nil {
-		return err
+		fmt.Printf("Returning error from listFiles(\"%s\") call\n", path)
+		// changing the error handling to 'panic' because panic crashes the program and stops execution.
+		// error handling with recursion will return all the stack execution before return the listFiles function.
+		// All the recursive calls to listFiles exit.
+		// Calling 'panic' may simplify the code, but it also crashes the program.
+		// That doesn't seem like much of an improvement.
+		panic(err)
 	}
 	for _, f := range files {
 		fullPath := filepath.Join(path, f.Name())
@@ -20,18 +25,13 @@ func listFiles(path string) error {
 			// recursively call the function while the current file is a directory
 			// passing the full directory's path to the function
 			// 'recursion' allows a function to call itself.
-			if err = listFiles(fullPath); err != nil {
-				return err
-			}
+			listFiles(fullPath)
 		} else {
 			fmt.Println(fullPath)
 		}
 	}
-	return nil
 }
 
 func main() {
-	if err := listFiles("ch12/listing_files/my_directory"); err != nil {
-		log.Fatal(err)
-	}
+	listFiles("ch12/listing_files/my_directory")
 }
