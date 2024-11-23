@@ -17,14 +17,26 @@ import "fmt"
 // Syntax: type InterfaceName interface { list of methods }
 // When you have a value in a variable with an interface type, you can only call methods defined as part of that interface.
 
+// Both TapePlayer and TapeRecorder satisfy the Player interface.
+// Both can Play a song and Stop a song.
+
+// When a method of defined type has a pointer receiver, we need assign a pointer to the variable of interface type.
+// If a type declares methods with pointer receivers, then you'll only be able to use pointers to that type
+// when assigning to interface variables.
+
+type Player interface {
+	Play(song string)
+	Stop()
+}
+
 type TapePlayer struct {
 	Batteries string
 }
 
-func (t TapePlayer) Play(song string) {
+func (t *TapePlayer) Play(song string) {
 	fmt.Println("Playing", song)
 }
-func (t TapePlayer) Stop() {
+func (t *TapePlayer) Stop() {
 	fmt.Println("Stopped!")
 }
 
