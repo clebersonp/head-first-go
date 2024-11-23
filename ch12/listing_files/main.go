@@ -17,6 +17,8 @@ func listFiles(path string) {
 		// All the recursive calls to listFiles exit.
 		// Calling 'panic' may simplify the code, but it also crashes the program.
 		// That doesn't seem like much of an improvement.
+		// Generally, calling 'panic' should be reserved for 'impossible' situations: errors that indicate a bug in the
+		// program, not a mistake on the user's part.
 		panic(err)
 	}
 	for _, f := range files {
