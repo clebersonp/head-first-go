@@ -38,10 +38,21 @@ func AcceptAnything(thing myAnyAlias) {
 	}
 }
 
+func testConcreteType(m Month) {
+	fmt.Println(m)
+}
+
 func main() {
 	AcceptAnything(3.1415)
 	AcceptAnything(14)
 	AcceptAnything("A string")
 	AcceptAnything(true)
 	AcceptAnything(Month("November"))
+
+	// When you have a variable of an interface type,
+	// the only methods you can call on it are those defined in the interface.
+	var i any
+	i = Month("April")
+	// testConcreteType(i) // It's not compiled
+	testConcreteType(i.(Month))
 }
