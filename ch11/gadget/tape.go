@@ -1,6 +1,8 @@
 package gadget
 
-import "fmt"
+import (
+	"fmt"
+)
 
 // Interface: Two different types that have the same methods. We can define a contract such as an interface.
 // An interface is a set of methods that certain values are expected to have (implement).
@@ -27,6 +29,28 @@ import "fmt"
 type Player interface {
 	Play(song string)
 	Stop()
+}
+
+// TryOut is a function that accepts a device of type Player (interface).
+// It will call the interface methods on that device.
+// And if the device is a TapeRecorder, it will convert it to a TapeRecorder and also call the Record method.
+// That conversion is done via reflection.
+func TryOut(player Player) {
+	fmt.Printf("Trying out Player Type: %T\n", player)
+	player.Play("Test Track")
+	player.Stop()
+	// Type conversions aren't meant for use with interfaces type. So, recorder := TapeRecorder(player) is not allowed
+	// We need a 'type assertion' to get the concrete type back.
+	// Syntax: var concreteType ConcreteType = interfaceType.(ConcreteType)
+	// If the interface type can't be converted to the concrete type, we get a panic at runtime not when compiling.
+	// This syntax is also called a 'type assertion' and it has a second return value which is a boolean.
+	// The boolean value indicates whether the type assertion succeeded or not and prevents a panic.
+	recorder, ok := player.(TapeRecorder)
+	if ok {
+		recorder.Record()
+	} else {
+		fmt.Println("Player was not a TapeRecorder")
+	}
 }
 
 type TapePlayer struct {

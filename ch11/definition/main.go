@@ -52,4 +52,10 @@ func main() {
 	playList(player, mixTape)
 	player = gadget.TapeRecorder{}
 	playList(player, mixTape)
+
+	fmt.Println("\nTesting reflection:")
+	// TryOut uses reflection to convert the interface to the concrete type
+	gadget.TryOut(&gadget.TapePlayer{})
+	// I don't need to pass a pointer because the concrete type has all the methods defined in the interface with value receiver
+	gadget.TryOut(gadget.TapeRecorder{})
 }
