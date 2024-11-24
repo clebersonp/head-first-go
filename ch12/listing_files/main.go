@@ -6,7 +6,15 @@ import (
 	"path/filepath"
 )
 
+// 3 keywords to use before a program crashes:
+// defer
+// panic
+// recover
+
+// We only can recover from a panic, and we use a deferred function call to recover that panic.
+
 func reportPanic() {
+	// The 'recover' function returns whatever value was originally passed to the 'panic' function.
 	p := recover()
 	// nothing happens if p is nil
 	if p == nil {
@@ -17,6 +25,7 @@ func reportPanic() {
 	} else {
 		// That's ok, we're waiting for an error type.
 		// Everything else will just panic again.
+		// Most programs should panic only in the event of an unanticipated error. This is a good situation for panic.
 		panic(p)
 	}
 }
@@ -52,6 +61,8 @@ func listFiles(path string) {
 func main() {
 	// calling a method with defer before the potential panic
 	// If a deferred function calls the built-in 'recover' function, the program will recover from a panic state (if any).
+	// When a program panics, any deferred function call will still be made, allowing cleanup code to be executed
+	// before a crash.
 	defer reportPanic()
 	// panic("some other issue") // to test the reinstating a panic with a string message instead of an error type
 	listFiles("ch12/listing_files/my_directory")
