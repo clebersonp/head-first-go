@@ -6,6 +6,17 @@ import (
 	"path/filepath"
 )
 
+func reportPanic() {
+	p := recover()
+	// nothing happens if p is nil
+	if p == nil {
+		return
+	}
+	if err, ok := p.(error); ok {
+		fmt.Println("Recovered from panic:", err)
+	}
+}
+
 // list files in a directory
 func listFiles(path string) {
 	fmt.Println(path)
@@ -35,5 +46,7 @@ func listFiles(path string) {
 }
 
 func main() {
+	// calling a method with defer before the potential panic
+	defer reportPanic()
 	listFiles("ch12/listing_files/my_directory")
 }
