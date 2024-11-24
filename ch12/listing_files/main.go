@@ -14,6 +14,10 @@ func reportPanic() {
 	}
 	if err, ok := p.(error); ok {
 		fmt.Println("Recovered from panic:", err)
+	} else {
+		// That's ok, we're waiting for an error type.
+		// Everything else will just panic again.
+		panic(p)
 	}
 }
 
@@ -48,5 +52,6 @@ func listFiles(path string) {
 func main() {
 	// calling a method with defer before the potential panic
 	defer reportPanic()
+	// panic("some other issue") // to test the reinstating a panic with a string message instead of an error type
 	listFiles("ch12/listing_files/my_directory")
 }
