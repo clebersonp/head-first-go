@@ -18,6 +18,10 @@ import (
 // or: go test ./ch14/prose -v
 // -v is for verbose
 // It will run every function contained in those files whose name starts with Test.
+// The parameter -run we can specify part or all of a function name, and only tests functions whose name matches
+// what you specify will be run.
+// If we add '-run With' to our go run command, only test functions with 'With' in their name will be matched.
+// i.e.: go test ./prose -v -run With
 
 func TestJoinWithCommas(t *testing.T) {
 	// table driven tests
