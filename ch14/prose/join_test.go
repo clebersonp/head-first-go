@@ -49,7 +49,7 @@ func TestJoinWithCommas(t *testing.T) {
 		t.Run(test.name, func(t *testing.T) {
 			if got := JoinWithCommas(test.args); got != test.want {
 				// call a method on the testing.T to fail the test
-				t.Errorf("JoinWithCommas() = %v, want = %v", got, test.want)
+				t.Errorf("JoinWithCommas(%#v) = %s, want = %s", test.args, got, test.want)
 			}
 		})
 	}
