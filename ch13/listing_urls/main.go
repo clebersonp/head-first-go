@@ -42,8 +42,15 @@ import (
 // Syntax: go myFunction()
 // 		'go' keyword | Function call
 
+type sizeResult struct {
+	url      string
+	size     int
+	duration time.Duration
+}
+
 func main() {
 	start := time.Now()
+	results := make(chan sizeResult)
 	urls := []string{
 		"https://example.com",
 		"https://golang.org",
@@ -54,14 +61,23 @@ func main() {
 		"https://x.com",
 	}
 	for _, url := range urls {
-		go responseSize(url)
+		go responseSize(url, results)
 	}
-	time.Sleep(time.Second)
+	// wait for all goroutines to finish
+	// The number of goroutines is equal to the number of urls
+	// I can't range over the channel directly because nobody will close it. So, It'll block forever for waiting
+	// anyone to close the channel
+	for range urls {
+		result := <-results
+		fmt.Printf("Size %7d in %13s for %s\n", result.size, result.duration, result.url)
+	}
 	end := time.Now().Sub(start)
 	fmt.Println("Duration:", end)
 }
 
-func responseSize(url string) {
+// channel is a way to communicate between goroutines and this way of communication is only to send a value to the channel
+func responseSize(url string, channel chan<- sizeResult) {
+	start := time.Now()
 	fmt.Printf("Getting %s\n", url)
 	response, err := http.Get(url)
 	if err != nil {
@@ -72,5 +88,6 @@ func responseSize(url string) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Printf("Size %d for %s\n", len(body), url)
+	end := time.Now().Sub(start)
+	channel <- sizeResult{url: url, size: len(body), duration: end}
 }
