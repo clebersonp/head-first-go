@@ -19,6 +19,11 @@ import (
 // Go won't let your use the return value from a function called with a go statement, because there's no guarantee
 // the return value will be ready before we attempt to use it.
 // The way to communicate between goroutines is using channels.
+// Channels block operation in the current goroutines. A send operation block the sending goroutine until another
+// goroutine executes a receiver operation on the same channel. And vice versa: a receiver operation blocks the
+// receiving goroutine until another goroutine executes a send operation on the same channel. This behavior allows
+// goroutines to 'synchronize' their actions.
+// A receiving goroutine waits until another goroutine sends a value.
 // To declare a variable that holds a channel, you use the 'chan' keyword, followed by the type of values that
 // channel will cary.
 // Syntax: var myChannel chan type
