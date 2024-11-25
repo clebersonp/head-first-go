@@ -1,6 +1,9 @@
 package prose
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 // To create a file of test cases, the file name must be the suffix _test.go. i.e.: nameOfFile_test.go
 // You're not required to make your tests part of the same package as the code you're testing, but if you want to
@@ -49,8 +52,14 @@ func TestJoinWithCommas(t *testing.T) {
 		t.Run(test.name, func(t *testing.T) {
 			if got := JoinWithCommas(test.args); got != test.want {
 				// call a method on the testing.T to fail the test
-				t.Errorf("JoinWithCommas(%#v) = %s, want = %s", test.args, got, test.want)
+				t.Errorf(errorString(test.args, got, test.want))
 			}
 		})
 	}
+}
+
+// this is a 'test helper function'.
+// Since this function doesn't start with Test, the 'go test tool' will ignore it. So, it's not treated as a test.
+func errorString(list []string, got, want string) string {
+	return fmt.Sprintf("JoinWithCommas(%#v) = %s, want = %s", list, got, want)
 }
