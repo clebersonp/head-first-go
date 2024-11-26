@@ -48,4 +48,25 @@ func main() {
 	// If the value provided to the {{range}} action is empty or nil, the loop won't run at all.
 	executeTemplate("Prices:\n{{range .}}${{.}}\n{{end}}", nil)
 	executeTemplate("Prices:\n{{range .}}${{.}}\n{{end}}", []float64{})
+
+	// struct fields into a template with actions. The fields must be to Upper case like exported fields.
+	// Otherwise, template will complain about unexported fields
+	type part struct {
+		Name  string
+		Count int
+	}
+	templateText = "Name: {{.Name}}\nCount: {{.Count}}\n"
+	executeTemplate(templateText, part{Name: "Fuses", Count: 5})
+	executeTemplate(templateText, part{Name: "Cable", Count: 2})
+	executeTemplate(templateText, part{})
+
+	type subscriber struct {
+		Name   string
+		Rate   float64
+		Active bool
+	}
+	// only prints the rate if the subscriber is active
+	templateText = "Name: {{.Name}}\n{{if .Active}}Rate: ${{.Rate}}\n{{end}}"
+	executeTemplate(templateText, subscriber{Name: "Aman Singh", Rate: 4.99, Active: true})
+	executeTemplate(templateText, subscriber{Name: "Joy Carr", Rate: 5.54, Active: false})
 }
