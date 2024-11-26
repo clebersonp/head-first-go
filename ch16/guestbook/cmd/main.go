@@ -1,7 +1,7 @@
 package main
 
 import (
-	"io"
+	"html/template"
 	"log"
 	"net/http"
 )
@@ -23,7 +23,9 @@ func redirectViewHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func viewHandler(w http.ResponseWriter, _ *http.Request) {
-	_, err := io.WriteString(w, "Hello World!")
+	html, err := template.ParseFiles("ch16/guestbook/resources/view.html")
+	check(err)
+	err = html.Execute(w, nil)
 	check(err)
 }
 
