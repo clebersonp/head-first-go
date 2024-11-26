@@ -41,4 +41,11 @@ func main() {
 	// "if" actions
 	executeTemplate("start Dot is {{if .}}true{{else}}false{{end}}!\n", true)
 	executeTemplate("start Dot is {{if .}}true{{else}}false{{end}}!\n", false)
+
+	// "range" actions
+	executeTemplate("Before loop: {{.}}\n{{range .}}In loop: {{.}}\n{{end}}After loop: {{.}}\n", []string{"do", "re", "mi"})
+	executeTemplate("Prices:\n{{range .}}${{.}}\n{{end}}", []float64{1.25, 0.99, 27})
+	// If the value provided to the {{range}} action is empty or nil, the loop won't run at all.
+	executeTemplate("Prices:\n{{range .}}${{.}}\n{{end}}", nil)
+	executeTemplate("Prices:\n{{range .}}${{.}}\n{{end}}", []float64{})
 }
