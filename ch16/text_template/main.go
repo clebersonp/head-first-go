@@ -37,4 +37,8 @@ func main() {
 	// We can use a single period to refer do 'dot', the current value within the data the template is working with.
 	executeTemplate("Dot is: {{.}}!\n", "ABC")
 	executeTemplate("Dot is: {{.}}!\n", 123.45)
+
+	// "if" actions
+	executeTemplate("start Dot is {{if .}}true{{else}}false{{end}}!\n", true)
+	executeTemplate("start Dot is {{if .}}true{{else}}false{{end}}!\n", false)
 }
