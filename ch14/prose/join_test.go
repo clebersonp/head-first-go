@@ -32,6 +32,11 @@ func TestJoinWithCommas(t *testing.T) {
 		want string
 	}{
 		{
+			name: "Zero element",
+			args: nil,
+			want: "",
+		},
+		{
 			name: "One element",
 			args: []string{"apple"},
 			want: "apple",
