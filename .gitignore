@@ -248,6 +248,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # Project files
-**/signature.txt
+ch16/guestbook/resources/data/signatures.txt
 
 # End of https://www.toptal.com/developers/gitignore/api/go,goland,git,visualstudiocode,windows,macos,linux
