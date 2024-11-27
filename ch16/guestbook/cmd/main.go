@@ -31,7 +31,7 @@ func viewHandler(w http.ResponseWriter, _ *http.Request) {
 	signatures, err := internal.GetStrings("ch16/guestbook/resources/data/signatures.txt")
 	log.Printf("Signatures: %#v\n", signatures)
 	check(err)
-	err = html.Execute(w, signatures)
+	err = html.Execute(w, internal.Guestbook{SignatureCount: len(signatures), Signatures: signatures})
 	check(err)
 }
 
