@@ -5,13 +5,15 @@
     <title>Guestbook</title>
 </head>
 <body>
-    <h1>Guestbook</h1>
-    <div>
-        {{len .}} total signatures - <a href="guestbook/new">Add Your Signature</a>
-    </div>
+<h1>Guestbook</h1>
+<div>
+    {{.SignatureCount}} total signatures - <a href="guestbook/new">Add Your Signature</a>
+</div>
 
-    <div>
-        {{range .}}<p>{{.}}</p>{{end}}
-    </div>
+<div>
+    {{range .Signatures}}
+    <p>{{.}}</p>
+    {{end}}
+</div>
 </body>
 </html>
