@@ -8,8 +8,10 @@ import (
 )
 
 const (
-	root      = "/"
-	guestbook = "/guestbook"
+	root            = "/"
+	guestbook       = "/guestbook"
+	newGuestbook    = "/guestbook/new"
+	createGuestbook = "/guestbook/create"
 )
 
 func check(err error) {
@@ -35,9 +37,24 @@ func viewHandler(w http.ResponseWriter, _ *http.Request) {
 	check(err)
 }
 
+func newHandler(w http.ResponseWriter, _ *http.Request) {
+	html, err := template.ParseFiles("ch16/guestbook/resources/pages/new.html")
+	check(err)
+	err = html.Execute(w, nil)
+	check(err)
+}
+
+func createHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("Adding signature")
+	log.Println(r.FormValue("signature"))
+	http.Redirect(w, r, guestbook, http.StatusSeeOther)
+}
+
 func main() {
 	http.HandleFunc(root, redirectViewHandler)
 	http.HandleFunc(guestbook, viewHandler)
+	http.HandleFunc(newGuestbook, newHandler)
+	http.HandleFunc(createGuestbook, createHandler)
 	log.Println("Server is running at http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
