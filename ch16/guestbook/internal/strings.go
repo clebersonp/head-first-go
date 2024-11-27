@@ -2,11 +2,12 @@ package internal
 
 import (
 	"bufio"
+	"fmt"
 	"log"
 	"os"
 )
 
-func GetStrings(fileName string) ([]string, error) {
+func GetSignatures(fileName string) ([]string, error) {
 	var lines []string
 	file, err := os.Open(fileName)
 	if os.IsNotExist(err) {
@@ -29,4 +30,18 @@ func GetStrings(fileName string) ([]string, error) {
 		return nil, scanner.Err()
 	}
 	return lines, nil
+}
+
+func AddSignature(fileName, signature string) error {
+	options := os.O_WRONLY | os.O_APPEND | os.O_CREATE
+	file, err := os.OpenFile(fileName, options, 0644)
+	if err != nil {
+		return err
+	}
+	_, err = fmt.Fprintln(file, signature)
+	if err != nil {
+		return err
+	}
+	err = file.Close()
+	return err
 }
