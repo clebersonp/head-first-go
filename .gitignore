@@ -247,4 +247,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Project files
+**/signature.txt
+
 # End of https://www.toptal.com/developers/gitignore/api/go,goland,git,visualstudiocode,windows,macos,linux
