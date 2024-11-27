@@ -7,13 +7,11 @@
 <body>
     <h1>Guestbook</h1>
     <div>
-        X total signatures - <a href="guestbook/new">Add Your Signature</a>
+        {{len .}} total signatures - <a href="guestbook/new">Add Your Signature</a>
     </div>
 
     <div>
-        <p>Signature</p>
-        <p>go</p>
-        <p>here</p>
+        {{range .}}<p>{{.}}</p>{{end}}
     </div>
 </body>
 </html>
