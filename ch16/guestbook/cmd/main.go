@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/clebersonp/head-first-go/ch16/guestbook/internal"
 	"html/template"
 	"log"
 	"net/http"
@@ -25,9 +26,12 @@ func redirectViewHandler(w http.ResponseWriter, r *http.Request) {
 func viewHandler(w http.ResponseWriter, _ *http.Request) {
 	// The html/template package is based on the text/template package.
 	// The html/template has some extra security features needed for working with HTML.
-	html, err := template.ParseFiles("ch16/guestbook/resources/view.html")
+	html, err := template.ParseFiles("ch16/guestbook/resources/pages/view.html")
 	check(err)
-	err = html.Execute(w, nil)
+	signatures, err := internal.GetStrings("ch16/guestbook/resources/data/signatures.txt")
+	log.Printf("Signatures: %#v\n", signatures)
+	check(err)
+	err = html.Execute(w, signatures)
 	check(err)
 }
 
