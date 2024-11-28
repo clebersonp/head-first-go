@@ -34,7 +34,7 @@ func GetSignatures(fileName string) ([]string, error) {
 
 func AddSignature(fileName, signature string) error {
 	options := os.O_WRONLY | os.O_APPEND | os.O_CREATE
-	file, err := os.OpenFile(fileName, options, 0644)
+	file, err := os.OpenFile(fileName, options, os.FileMode(0644))
 	if err != nil {
 		return err
 	}
