@@ -34,6 +34,8 @@ func GetSignatures(fileName string) ([]string, error) {
 
 func AddSignature(fileName, signature string) error {
 	options := os.O_WRONLY | os.O_APPEND | os.O_CREATE
+	// 0644 is in octal notation. Any series of digits preceded by a 0 Zero will be treated as an octal number.
+	// Go lets you write number using octal notation.
 	file, err := os.OpenFile(fileName, options, os.FileMode(0644))
 	if err != nil {
 		return err
